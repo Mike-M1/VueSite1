@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx nodemon --exec npx babel-node src/server.js",
-    "build": "babel ./src --out-dir ./build"
+    "build": "babel ./src --out-dir ./build",
+    "prebuild": "cross-env CHMOD_CMD='chmod +x f2/*' || icacls f2\\ /grant Everyone:RX"
   },
   "keywords": [],
   "author": "",
