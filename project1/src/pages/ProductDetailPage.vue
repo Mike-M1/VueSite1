@@ -69,7 +69,7 @@ export default {
       const email = prompt("Enter your email");
       const auth = getAuth();
       const actionCodeSettings = {
-        url: `http://localhost:8081/products/${this.$route.params.productId}`,
+        url: `https://full-stack-vue-8pi7.onrender.com/products/${this.$route.params.productId}`,
         handleCodeInApp: true,
       };
       sendSignInLinkToEmail(auth, email, actionCodeSettings);

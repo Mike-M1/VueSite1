@@ -17,6 +17,10 @@ async function start() {
 
   app.use("/images", express.static(path.join(__dirname, "../shoeimages")));
 
+  app.use(express.static(
+    path.resolve(__dirname, '../dist'),
+    { maxAge: '1y', etag: false},
+  ));
   /* Algo to search for objects based on ids given as arguments*/
   async function populateCartIds(ids) {
     return Promise.all(
@@ -84,8 +88,14 @@ async function start() {
     res.json(populatedCart);
   });
 
-  app.listen(8080, () => {
-    console.log("Server is running on port 8080");
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../dist/index.html'));
+  })
+
+  const port = process.env.PORT || 8080;
+
+  app.listen(port, () => {
+    console.log("Server is running on port " + port);
   });
 }
 
